@@ -1,0 +1,113 @@
+body{
+    background-color: #fefefe;
+    color: #7D0A0A;
+    font-family: 'Spline Sans', sans-serif;                                       
+}
+/* the (plus) svg */
+#Capa_1{
+    position:fixed;
+    left: 95%;
+    top:90%;
+    height:40px; 
+    width:40px;
+}
+.header-container{
+    margin: 20px 0px 20px 0px ; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    max-width:100%;
+}
+.header-container >h1{
+    font-size: 50px;
+    margin:10px 0px 5px 0px;
+    font-family: 'Azeret Mono', sans-serif;                               
+    }
+.header-container >h4{
+      font-size: 20px;
+      margin: 10px 0px 0px 0px ;
+      font-family: 'Azeret Mono', sans-serif;
+    }
+    .header-container > p{
+        font-size: 18px;
+        font-weight: 500;
+    }
+.header-container>form>select , .header-container>form>input{
+       margin: 40px 0px 0px 0px ;
+       color: #7D0A0A;
+       border:solid .5px #7D0A0A;
+       height: 28px;
+       width: 90px;
+      }
+.header-container>form>input{
+        background-color: #7D0A0A;
+        color: #fefefe;
+        cursor: pointer;
+      }
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    max-width:100%;
+    margin: 30px 0px 0px 0px ;
+}
+.data-form{
+    margin:30px 0px 30px 0px ;
+    max-width:900px;
+ }
+ .data-form > img{
+    float: left;
+    margin: 0px 20px 10px 0px ;
+}
+.data-form >button{
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px;
+    height: 80px;
+    padding: 0px;
+}
+.data-form >button> h1{
+    font-size: 35px;
+    color: #7D0A0A;
+    font-family: 'Azeret Mono', sans-serif;
+    margin-bottom: 0px;
+  }
+  .data-form >button> h1:hover {
+    color: rgba(55, 55, 253, 0.738);
+    text-decoration: underline;
+  }
+  .data-form >button> h1:active {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+.data-form > span{
+   display: block;
+   font-size: 12.5px; 
+   margin: 0px 0px 20px 0px;
+   color: rgba(75, 66, 66, 0.863);
+}
+.data-form > p{
+    margin: 10px 0px 5px 1px ;
+    font-size: 20px;
+    line-height: 25px;
+}
+hr{
+    height: 1px;
+    width: 1100px;
+    background-color:  #7D0A0A;
+    border: 0px;
+    margin-bottom: 10px;
+}
+/* if on a bigger monitor make the (plus) svg bigger */
+@media (min-width:1601px) {
+    #Capa_1{
+        height:50px; 
+        width:50px;
+    }
+}

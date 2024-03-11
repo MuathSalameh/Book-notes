@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/notes.css"/>
+    <link href="https://fonts.cdnfonts.com/css/chivo-mono" rel="stylesheet">
+    <title>Notes</title>
+</head>
+<body>
+<div class="content-container">
+<!-- this function to make the date format as (yy/mm/dd)-->
+ <%  function getRightFormat(d){%>
+ <% let date = new Date(d);%>
+ <% let year = date.toLocaleString("default", { year: "numeric" });%>
+ <% let month = date.toLocaleString("default", { month: "2-digit" });%>
+ <% let day = date.toLocaleString("default", { day: "2-digit" });%>
+ <% let formattedDate = year + "/" + month + "/" + day;%>
+ <% return formattedDate;%>
+ <%  }%>
+
+ <% book.forEach((b)=>{  %>
+         <div class="data-form">
+            <img src="https://covers.openlibrary.org/b/isbn/<%=b.isbn %>-L.jpg" alt="<%=b.name%>">
+            <h1><%= b.name %></h1>
+            <span>ISBN :<%=b.isbn %></span>
+            <span>Date Read : <%=getRightFormat(b.date)  %></span>
+        <form action="/delete" method="post" name="myForm" style=" display: inline;">
+            <input type="hidden" name="id" value="<%=b.id %>">
+            <button onclick="return confirmation();">
+                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    width="15px" height="15px" viewBox="0 0 482.428 482.429"
+                    xml:space="preserve">
+               <g>
+                   <g>
+                       <path d="M381.163,57.799h-75.094C302.323,25.316,274.686,0,241.214,0c-33.471,0-61.104,25.315-64.85,57.799h-75.098
+                           c-30.39,0-55.111,24.728-55.111,55.117v2.828c0,23.223,14.46,43.1,34.83,51.199v260.369c0,30.39,24.724,55.117,55.112,55.117
+                           h210.236c30.389,0,55.111-24.729,55.111-55.117V166.944c20.369-8.1,34.83-27.977,34.83-51.199v-2.828
+                           C436.274,82.527,411.551,57.799,381.163,57.799z M241.214,26.139c19.037,0,34.927,13.645,38.443,31.66h-76.879
+                           C206.293,39.783,222.184,26.139,241.214,26.139z M375.305,427.312c0,15.978-13,28.979-28.973,28.979H136.096
+                           c-15.973,0-28.973-13.002-28.973-28.979V170.861h268.182V427.312z M410.135,115.744c0,15.978-13,28.979-28.973,28.979H101.266
+                           c-15.973,0-28.973-13.001-28.973-28.979v-2.828c0-15.978,13-28.979,28.973-28.979h279.897c15.973,0,28.973,13.001,28.973,28.979
+                           V115.744z"/>
+                       <path d="M171.144,422.863c7.218,0,13.069-5.853,13.069-13.068V262.641c0-7.216-5.852-13.07-13.069-13.07
+                           c-7.217,0-13.069,5.854-13.069,13.07v147.154C158.074,417.012,163.926,422.863,171.144,422.863z"/>
+                       <path d="M241.214,422.863c7.218,0,13.07-5.853,13.07-13.068V262.641c0-7.216-5.854-13.07-13.07-13.07
+                           c-7.217,0-13.069,5.854-13.069,13.07v147.154C228.145,417.012,233.996,422.863,241.214,422.863z"/>
+                       <path d="M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07
+                           c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z"/>
+                   </g>
+               </g>
+               </svg>
+           
+            </button>
+        </form>
+        <form action="/edit" method="post" name="myForm2" style=" display: inline;">
+            <input type="hidden" name="id" value="<%=b.id %>">
+            <button onclick="document.myForm2.submit();" >
+                    <svg fill="#000000" height="15px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 490.273 490.273" xml:space="preserve">
+               <g>
+                   <g>
+                       <g>
+                           <path d="M313.548,152.387l-230.8,230.9c-6.7,6.7-6.7,17.6,0,24.3c3.3,3.3,7.7,5,12.1,5s8.8-1.7,12.1-5l230.8-230.8
+                               c6.7-6.7,6.7-17.6,0-24.3C331.148,145.687,320.248,145.687,313.548,152.387z"/>
+                           <path d="M431.148,191.887c4.4,0,8.8-1.7,12.1-5l25.2-25.2c29.1-29.1,29.1-76.4,0-105.4l-34.4-34.4
+                               c-14.1-14.1-32.8-21.8-52.7-21.8c-19.9,0-38.6,7.8-52.7,21.8l-25.2,25.2c-6.7,6.7-6.7,17.6,0,24.3l115.6,115.6
+                               C422.348,190.187,426.748,191.887,431.148,191.887z M352.948,45.987c7.6-7.6,17.7-11.8,28.5-11.8c10.7,0,20.9,4.2,28.5,11.8
+                               l34.4,34.4c15.7,15.7,15.7,41.2,0,56.9l-13.2,13.2l-91.4-91.4L352.948,45.987z"/>
+                           <path d="M162.848,467.187l243.5-243.5c6.7-6.7,6.7-17.6,0-24.3s-17.6-6.7-24.3,0l-239.3,239.5l-105.6,14.2l14.2-105.6
+                               l228.6-228.6c6.7-6.7,6.7-17.6,0-24.3c-6.7-6.7-17.6-6.7-24.3,0l-232.6,232.8c-2.7,2.7-4.4,6.1-4.9,9.8l-18,133.6
+                               c-0.7,5.3,1.1,10.6,4.9,14.4c3.2,3.2,7.6,5,12.1,5c0.8,0,1.5-0.1,2.3-0.2l133.6-18
+                               C156.748,471.587,160.248,469.887,162.848,467.187z"/>
+                       </g>
+                   </g>
+               </g>
+               </svg>
+            </button>
+       </form>
+            <div style="height: 200px;"></div>
+            <p><%=b.description %></p>
+            <div style="height: 25px;"></div>
+            <p id="the-notes">My Notes :</p>
+            <div style="height: 5px;"></div>
+            <p><%= b.note %></p>
+        </div>
+ <% }) %>
+</div>
+<script>
+    // this function to confirm before deleting the book 
+function confirmation(){
+    if (!confirm("Confirm Delete: are you sure you want to delete it?")) {
+        return false;
+    }
+    else{
+        document.myForm.submit();
+    }
+}
+</script>
+</body>
+</html>

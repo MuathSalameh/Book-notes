@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.cdnfonts.com/css/chivo-mono" rel="stylesheet">
+    <title>Book-notes</title>
+</head>
+<body>
+<div class="header-container"> 
+    <h1>Muath Salameh</h1>
+    <h4>books that I've Read</h4>
+    <p>Tiny summary but detailed notes for each book.</p>
+ <form action="/sort" method="post">
+    <label>Sort by : </label>
+    <select name="sort">
+      <option name="Newest" value="DESC">Newest</option>  
+      <option name="Oldest" value="ASC">Oldest</option>
+    </select>
+    <input type="submit" value=" Sort ">
+</form>
+</div>
+<hr/>
+<div class="content-container"> 
+<!-- this function to make the date format as (yy/mm/dd)-->
+<%  function getRightFormat(d){%>
+ <%   let date = new Date(d);%>
+ <%    let year = date.toLocaleString("default", { year: "numeric" });%>
+ <%    let month = date.toLocaleString("default", { month: "2-digit" });%>
+ <%    let day = date.toLocaleString("default", { day: "2-digit" });%>
+ <%    let formattedDate = year + "/" + month + "/" + day;%>
+ <%    return formattedDate;%>
+ <%  }%>
+
+<% book.forEach((b) => { %> 
+<form class="data-form" action="/notes"  name="myForm" method="post"> 
+<img src="https://covers.openlibrary.org/b/isbn/<%=b.isbn %>-M.jpg" alt="<%=b.name%>">
+<input type="hidden" name="id" value="<%=b.id %>">
+<button onclick="document.myForm.submit();"><h1><%=b.name %></h1></button>
+<span>Date Read : <%=getRightFormat(b.date)%></span>
+<p><%=b.description %></p>
+<div style="display: block; height: 100px;"></div>
+</form>
+<% }); %>
+</div>
+<!--ADD BUTTON -->
+<a href="/add">
+    <svg fill="#000000"  
+    version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+    viewBox="0 0 490.2 490.2" xml:space="preserve">
+<g>
+   <g>
+       <path d="M418.5,418.5c95.6-95.6,95.6-251.2,0-346.8s-251.2-95.6-346.8,0s-95.6,251.2,0,346.8S322.9,514.1,418.5,418.5z M89,89
+           c86.1-86.1,226.1-86.1,312.2,0s86.1,226.1,0,312.2s-226.1,86.1-312.2,0S3,175.1,89,89z"/>
+       <path d="M245.1,336.9c3.4,0,6.4-1.4,8.7-3.6c2.2-2.2,3.6-5.3,3.6-8.7v-67.3h67.3c3.4,0,6.4-1.4,8.7-3.6c2.2-2.2,3.6-5.3,3.6-8.7
+           c0-6.8-5.5-12.3-12.2-12.2h-67.3v-67.3c0-6.8-5.5-12.3-12.2-12.2c-6.8,0-12.3,5.5-12.2,12.2v67.3h-67.3c-6.8,0-12.3,5.5-12.2,12.2
+           c0,6.8,5.5,12.3,12.2,12.2h67.3v67.3C232.8,331.4,238.3,336.9,245.1,336.9z"/>
+   </g>
+</g>
+    </svg>
+</a>    
+
+
+
+</body>
+</html>

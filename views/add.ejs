@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/add.css"/>
+    <link href="https://fonts.cdnfonts.com/css/chivo-mono" rel="stylesheet">
+    <title>Add book</title>
+</head>
+<body>
+<!-- this function to make the date format as (yy/mm/dd)-->
+<%function getRightFormat(d){%>
+<% let date = new Date(d);%>
+<% let year = date.toLocaleString("default", { year: "numeric" });%>
+<% let month = date.toLocaleString("default", { month: "2-digit" });%>
+<% let day = date.toLocaleString("default", { day: "2-digit" });%>
+<% let formattedDate = year + "/" + month + "/" + day;%>
+<% return formattedDate;%>
+<%  }%>
+
+<!-- check if the book length we passed greater than 0 or not/if it's >0 show the edit page else show the add page -->
+    <% if(book.length>0) {  %>
+       <% book.forEach((b)=>{ %>
+        <form action="/e" method="post" name="addForm"> 
+            <h1>Edit</h1>
+            <input type="hidden" name="id" value="<%=b.id %>">
+            <input type="text" name="name" required value="<%=b.name %>" maxlength="100"  autocomplete="off"/> 
+            <input type="number" name="isbn" required value="<%=b.isbn %>" maxlength="100" min="0" >
+            <input type="text" name="date" value="<%=getRightFormat(b.date)%>"  autocomplete="off" >
+            <textarea name="description" cols="30" rows="10"  maxlength="2000"><%=b.description %></textarea>
+            <textarea name="note" cols="30" rows="10" maxlength="2000"><%=b.note %></textarea>
+            <input type="submit" value="edit" />
+        </form>
+        <%  }); %>
+        <% } else{ %>
+            <form action="/add" method="post">
+            <h1>Add a Book </h1>
+            <input type="text" name="name" required placeholder="Book Name..." maxlength="100" autocomplete="off"/> 
+            <input type="number" name="isbn" required placeholder="ISBN" maxlength="100" min="0">
+            <input type="text" name="date" placeholder="Read-Date (yy/mm/dd)" autocomplete="off">
+            <textarea name="description" cols="30" rows="10" placeholder="Description..." maxlength="2000"></textarea>
+            <textarea name="note" cols="30" rows="10" placeholder="Any Notes..."maxlength="2000"></textarea>
+            <input type="submit" value="Add" />
+        </form>
+        <% } %>
+</body>
+</html>
